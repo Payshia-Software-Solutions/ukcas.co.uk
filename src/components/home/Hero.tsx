@@ -28,7 +28,7 @@ export default function Hero() {
         </div>
         <div className="relative h-64 md:h-full w-full">
            <Image 
-             src="https://placehold.co/600x400.png"
+             src="https://images.unsplash.com/photo-1534009916851-7850ba974f9c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxN3x8Z3JhZHVhdGV8ZW58MHx8fHwxNzUxMzAwNTY2fDA&ixlib=rb-4.1.0&q=80&w=1080"
              alt="University campus"
              fill
              className="object-cover rounded-lg shadow-2xl"
