@@ -9,6 +9,7 @@ import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { useI18n } from '@/context/i18n-provider';
 import LanguageSwitcher from './LanguageSwitcher';
+import { ThemeSwitcher } from './theme-switcher';
 
 export default function Header() {
   const pathname = usePathname();
@@ -45,6 +46,7 @@ export default function Header() {
           ))}
         </nav>
         <div className="hidden md:flex items-center space-x-2">
+          <ThemeSwitcher />
           <LanguageSwitcher />
           <Button variant="ghost" asChild>
             <Link href="/login">{t('Header.login')}</Link>
@@ -75,7 +77,10 @@ export default function Header() {
                 ))}
               </nav>
               <div className="pt-4 mt-auto space-y-4 border-t">
-                <LanguageSwitcher />
+                <div className="flex justify-between items-center">
+                  <LanguageSwitcher />
+                  <ThemeSwitcher />
+                </div>
                 <div className='flex flex-col space-y-2'>
                   <Button variant="outline" asChild>
                       <Link href="/login">{t('Header.login')}</Link>
