@@ -12,13 +12,12 @@ import { useI18n } from '@/context/i18n-provider';
 import { Button } from '@/components/ui/button';
 import { Globe } from 'lucide-react';
 
-const countries = [
-  { name: 'United States', lang: 'en' },
-  { name: 'Japan', lang: 'ja' },
-  { name: 'India', lang: 'hi' },
-  { name: 'Sri Lanka', lang: 'si' },
-  { name: 'Russia', lang: 'ru' },
-  { name: 'New Zealand', lang: 'en' },
+const languages = [
+  { name: 'English', lang: 'en' },
+  { name: 'සිංහල (Sinhala)', lang: 'si' },
+  { name: '日本語 (Japanese)', lang: 'ja' },
+  { name: 'Русский (Russian)', lang: 'ru' },
+  { name: 'हिन्दी (Hindi)', lang: 'hi' },
 ];
 
 export default function CountrySelectorModal() {
@@ -26,15 +25,15 @@ export default function CountrySelectorModal() {
   const { setLocale } = useI18n();
 
   useEffect(() => {
-    const countrySelected = sessionStorage.getItem('ukcas_country_selected');
-    if (!countrySelected) {
+    const languageSelected = sessionStorage.getItem('ukcas_language_selected');
+    if (!languageSelected) {
       setIsOpen(true);
     }
   }, []);
 
-  const handleCountrySelect = (lang: string) => {
+  const handleLanguageSelect = (lang: string) => {
     setLocale(lang);
-    sessionStorage.setItem('ukcas_country_selected', 'true');
+    sessionStorage.setItem('ukcas_language_selected', 'true');
     setIsOpen(false);
   };
 
@@ -51,21 +50,21 @@ export default function CountrySelectorModal() {
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Globe />
-            Select Your Region
+            Select Your Language
           </DialogTitle>
           <DialogDescription>
-            Choose your country to tailor your experience and language.
+            Choose your preferred language for the website.
           </DialogDescription>
         </DialogHeader>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 py-4">
-          {countries.map((country) => (
+          {languages.map((language) => (
             <Button
-              key={country.name}
+              key={language.lang}
               variant="outline"
               className="w-full justify-center"
-              onClick={() => handleCountrySelect(country.lang)}
+              onClick={() => handleLanguageSelect(language.lang)}
             >
-              {country.name}
+              {language.name}
             </Button>
           ))}
         </div>
