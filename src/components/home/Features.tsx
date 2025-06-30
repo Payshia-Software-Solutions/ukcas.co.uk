@@ -47,11 +47,11 @@ export default function Features() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
             <Card key={index} className="flex flex-col items-center text-center p-6 hover:shadow-lg transition-shadow duration-300">
-              <CardHeader className="p-0">
-                {feature.icon}
-                <CardTitle className="mt-4">{feature.title}</CardTitle>
+              {feature.icon}
+              <CardHeader className="p-0 pt-4 pb-2">
+                <CardTitle>{feature.title}</CardTitle>
               </CardHeader>
-              <CardDescription className="mt-2">
+              <CardDescription>
                 {feature.description}
               </CardDescription>
             </Card>
