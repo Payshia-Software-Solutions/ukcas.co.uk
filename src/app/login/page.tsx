@@ -1,3 +1,5 @@
+'use client';
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -5,20 +7,26 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { LogIn } from "lucide-react";
 import Link from "next/link";
+import { useI18n } from "@/context/i18n-provider";
+import LanguageSwitcher from "@/components/layout/LanguageSwitcher";
 
 export default function LoginPage() {
+  const { t } = useI18n();
+
   const LoginForm = ({ userType }: { userType: 'Admin' | 'Institute' }) => (
     <form className="space-y-4">
       <div className="space-y-2">
-        <Label htmlFor={`${userType}-email`}>Email</Label>
+        <Label htmlFor={`${userType}-email`}>{t('Login.emailLabel')}</Label>
         <Input id={`${userType}-email`} type="email" placeholder="you@example.com" />
       </div>
       <div className="space-y-2">
-        <Label htmlFor={`${userType}-password`}>Password</Label>
+        <Label htmlFor={`${userType}-password`}>{t('Login.passwordLabel')}</Label>
         <Input id={`${userType}-password`} type="password" />
       </div>
       <Button type="submit" className="w-full" asChild>
-        <Link href={userType === 'Admin' ? '/admin' : '/dashboard'}>Login to {userType} Panel</Link>
+        <Link href={userType === 'Admin' ? '/admin' : '/dashboard'}>
+          {userType === 'Admin' ? t('Login.loginButtonAdmin') : t('Login.loginButtonInstitute')}
+        </Link>
       </Button>
     </form>
   );
@@ -31,19 +39,24 @@ export default function LoginPage() {
             <div className="mx-auto bg-primary text-primary-foreground w-16 h-16 rounded-full flex items-center justify-center mb-4">
               <LogIn className="h-8 w-8" />
             </div>
-            <h1 className="text-3xl font-bold font-headline">Portal Login</h1>
-            <p className="text-muted-foreground">Access your dashboard.</p>
+            <h1 className="text-3xl font-bold font-headline">{t('Login.portalLogin')}</h1>
+            <p className="text-muted-foreground">{t('Login.accessDashboard')}</p>
           </div>
+
+          <div className="flex justify-center mb-4">
+            <LanguageSwitcher />
+          </div>
+
           <Tabs defaultValue="institute" className="w-full">
             <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="institute">Institute</TabsTrigger>
-              <TabsTrigger value="admin">Admin</TabsTrigger>
+              <TabsTrigger value="institute">{t('Login.institute')}</TabsTrigger>
+              <TabsTrigger value="admin">{t('Login.admin')}</TabsTrigger>
             </TabsList>
             <TabsContent value="institute">
               <Card>
                 <CardHeader>
-                  <CardTitle>Institute Login</CardTitle>
-                  <CardDescription>Access your institute's dashboard to manage students and certificates.</CardDescription>
+                  <CardTitle>{t('Login.instituteLogin')}</CardTitle>
+                  <CardDescription>{t('Login.instituteDescription')}</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <LoginForm userType="Institute" />
@@ -53,8 +66,8 @@ export default function LoginPage() {
             <TabsContent value="admin">
               <Card>
                 <CardHeader>
-                  <CardTitle>Admin Login</CardTitle>
-                  <CardDescription>Access the UKCAS administration panel.</CardDescription>
+                  <CardTitle>{t('Login.adminLogin')}</CardTitle>
+                  <CardDescription>{t('Login.adminDescription')}</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <LoginForm userType="Admin" />
