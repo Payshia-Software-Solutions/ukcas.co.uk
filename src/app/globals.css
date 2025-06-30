@@ -4,62 +4,62 @@
 
 @layer base {
   :root {
-    --background: 220 13% 93%; /* #E9EBEE */
+    --background: 356 47% 94%; /* #F5E9EA */
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 205 65% 28%; /* #1A5276 */
-    --primary-foreground: 210 40% 98%;
-    --secondary: 220 13% 85%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 220 13% 85%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 199 60% 42%; /* #2E86AB */
-    --accent-foreground: 210 40% 98%;
+    --primary: 354 50% 32%; /* #7C2B33 */
+    --primary-foreground: 356 82% 96%; /* #FDEBEC */
+    --secondary: 356 41% 84%; /* #E7C7C9 */
+    --secondary-foreground: 354 50% 32%;
+    --muted: 356 41% 84%;
+    --muted-foreground: 351 29% 41%; /* #874950 */
+    --accent: 351 29% 41%; /* #874950 */
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 205 65% 28%;
+    --border: 356 41% 84%;
+    --input: 356 41% 84%;
+    --ring: 354 50% 32%;
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 222.2 84% 4.9%;
-    --sidebar-accent: 210 40% 96.1%;
-    --sidebar-accent-foreground: 222.2 47.4% 11.2%;
-    --sidebar-border: 214.3 31.8% 91.4%;
-    --sidebar-ring: 221.2 83.2% 53.3%;
+    --sidebar-accent: 356 47% 94%;
+    --sidebar-accent-foreground: 354 50% 32%;
+    --sidebar-border: 356 41% 84%;
+    --sidebar-ring: 354 50% 32%;
   }
  
   .dark {
-    --background: 215 28% 17%;
-    --foreground: 210 40% 98%;
-    --card: 215 28% 20%;
-    --card-foreground: 210 40% 98%;
+    --background: 351 20% 15%;
+    --foreground: 356 47% 94%;
+    --card: 351 20% 20%;
+    --card-foreground: 356 47% 94%;
     --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 205 65% 38%; /* A slightly brighter #1A5276 for dark mode */
-    --primary-foreground: 210 40% 98%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 199 60% 52%; /* A slightly brighter #2E86AB for dark mode */
-    --accent-foreground: 210 40% 98%;
+    --popover-foreground: 356 47% 94%;
+    --primary: 354 50% 55%;
+    --primary-foreground: 356 82% 96%;
+    --secondary: 351 20% 25%;
+    --secondary-foreground: 356 47% 94%;
+    --muted: 351 20% 25%;
+    --muted-foreground: 356 41% 84%;
+    --accent: 351 30% 60%;
+    --accent-foreground: 351 20% 15%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 205 65% 38%;
+    --border: 351 20% 25%;
+    --input: 351 20% 25%;
+    --ring: 354 50% 55%;
     
-    --sidebar-background: 222.2 84% 4.9%;
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-accent: 217.2 32.6% 17.5%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 217.2 32.6% 17.5%;
-    --sidebar-ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 351 20% 15%;
+    --sidebar-foreground: 356 47% 94%;
+    --sidebar-accent: 351 20% 25%;
+    --sidebar-accent-foreground: 356 47% 94%;
+    --sidebar-border: 351 20% 25%;
+    --sidebar-ring: 354 50% 55%;
   }
 }
  
