@@ -24,7 +24,7 @@ export default function FeaturedInstitutes() {
         >
           <CarouselContent>
             {mockInstitutes.map((institute) => (
-              <CarouselItem key={institute.id} className="md:basis-1/2 lg:basis-1/3">
+              <CarouselItem key={institute.id} className="basis-full md:basis-1/2 lg:basis-1/3">
                 <div className="p-1">
                   <Card className="overflow-hidden">
                     <CardContent className="flex flex-col items-center justify-center p-6 aspect-square">
@@ -37,8 +37,8 @@ export default function FeaturedInstitutes() {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
+          <CarouselPrevious className="left-2 md:-left-12" />
+          <CarouselNext className="right-2 md:-right-12" />
         </Carousel>
         <div className="text-center mt-12">
             <Button asChild>
