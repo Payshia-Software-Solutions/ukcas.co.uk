@@ -4,6 +4,7 @@ import { Toaster } from '@/components/ui/toaster';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { I18nProvider } from '@/context/i18n-provider';
+import CountrySelectorModal from '@/components/CountrySelectorModal';
 
 export const metadata: Metadata = {
   title: 'UKCAS Accreditation Platform',
@@ -27,6 +28,7 @@ export default function RootLayout({
       </head>
       <body className="font-body antialiased min-h-screen flex flex-col">
         <I18nProvider>
+          <CountrySelectorModal />
           <Header />
           <main className="flex-grow">{children}</main>
           <Footer />
