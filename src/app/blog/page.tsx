@@ -10,7 +10,7 @@ export default function BlogPage() {
     <div className="py-16 md:py-24">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center space-y-4 mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold font-headline">UKCAS Insights</h1>
+          <h1 className="text-3xl md:text-5xl font-bold font-headline">UKCAS Insights</h1>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             Stay informed with the latest news, trends, and discussions in higher education and accreditation.
           </p>

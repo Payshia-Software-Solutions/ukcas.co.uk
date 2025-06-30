@@ -7,7 +7,7 @@ export default function Hero() {
     <section className="relative bg-primary text-primary-foreground">
       <div className="container mx-auto px-4 md:px-6 py-20 md:py-32 grid md:grid-cols-2 gap-8 items-center">
         <div className="space-y-6">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight font-headline">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tight font-headline">
             The Global Standard in Educational Accreditation
           </h1>
           <p className="text-lg md:text-xl text-primary-foreground/80">

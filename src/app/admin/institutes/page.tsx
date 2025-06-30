@@ -13,8 +13,8 @@ const applications = [
 export default function AdminInstitutesPage() {
     return (
         <div>
-            <div className="flex justify-between items-center mb-6">
-                <h1 className="text-3xl font-bold font-headline">Manage Institutes</h1>
+            <div className="flex flex-col items-start gap-4 mb-6 sm:flex-row sm:items-center sm:justify-between">
+                <h1 className="text-2xl sm:text-3xl font-bold font-headline">Manage Institutes</h1>
                  <Button>Add New Institute</Button>
             </div>
             
