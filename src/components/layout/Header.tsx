@@ -3,22 +3,25 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, Award } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { Logo } from '@/components/Logo';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
-
-const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/institutes', label: 'Institutes' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/events', label: 'Events' },
-  { href: '/verify-certificate', label: 'Verify Certificate' },
-  { href: '/about', label: 'About' },
-];
+import { useI18n } from '@/context/i18n-provider';
+import LanguageSwitcher from './LanguageSwitcher';
 
 export default function Header() {
   const pathname = usePathname();
+  const { t } = useI18n();
+
+  const navLinks = [
+    { href: '/', label: t('Header.home') },
+    { href: '/institutes', label: t('Header.institutes') },
+    { href: '/blog', label: t('Header.blog') },
+    { href: '/events', label: t('Header.events') },
+    { href: '/verify-certificate', label: t('Header.verify') },
+    { href: '/about', label: t('Header.about') },
+  ];
 
   const NavLink = ({ href, label }: { href: string; label: string }) => (
     <Link
@@ -42,11 +45,12 @@ export default function Header() {
           ))}
         </nav>
         <div className="hidden md:flex items-center space-x-2">
+          <LanguageSwitcher />
           <Button variant="ghost" asChild>
-            <Link href="/login">Login</Link>
+            <Link href="/login">{t('Header.login')}</Link>
           </Button>
           <Button asChild>
-            <Link href="/registration">Register Institute</Link>
+            <Link href="/registration">{t('Header.register')}</Link>
           </Button>
         </div>
         <Sheet>
@@ -70,13 +74,16 @@ export default function Header() {
                   </Link>
                 ))}
               </nav>
-              <div className="flex flex-col space-y-2 pt-4 border-t">
-                 <Button variant="outline" asChild>
-                    <Link href="/login">Login</Link>
-                 </Button>
-                 <Button asChild>
-                    <Link href="/registration">Register Institute</Link>
-                 </Button>
+              <div className="pt-4 mt-auto space-y-4 border-t">
+                <LanguageSwitcher />
+                <div className='flex flex-col space-y-2'>
+                  <Button variant="outline" asChild>
+                      <Link href="/login">{t('Header.login')}</Link>
+                  </Button>
+                  <Button asChild>
+                      <Link href="/registration">{t('Header.register')}</Link>
+                  </Button>
+                </div>
               </div>
             </div>
           </SheetContent>
