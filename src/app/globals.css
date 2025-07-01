@@ -61,6 +61,20 @@
     --sidebar-border: 351 20% 25%;
     --sidebar-ring: 354 50% 55%;
   }
+
+  /* NProgress styles */
+  #nprogress {
+    pointer-events: none;
+  }
+  #nprogress .bar {
+    background: hsl(var(--primary));
+    position: fixed;
+    z-index: 1031;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+  }
 }
  
 @layer base {
@@ -70,31 +84,5 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
-  }
-
-  /* PRELOADER STYLES */
-  @keyframes preloader-fade-out {
-    to {
-      opacity: 0;
-      visibility: hidden;
-    }
-  }
-
-  @keyframes main-content-fade-in {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  #preloader {
-    animation: preloader-fade-out 0.5s ease-in-out 1s forwards;
-  }
-
-  #main-content {
-    opacity: 0;
-    animation: main-content-fade-in 0.5s ease-in-out 1s forwards;
   }
 }
