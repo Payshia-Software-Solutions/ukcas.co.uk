@@ -1,4 +1,4 @@
-import type { Institute, BlogPost, Event } from './types';
+import type { Institute, BlogPost, Event, Certificate } from './types';
 
 export const mockInstitutes: Institute[] = [
   {
@@ -8,6 +8,7 @@ export const mockInstitutes: Institute[] = [
     country: 'United Kingdom',
     description: 'A leading institution in technology and engineering education.',
     courses: ['Computer Science', 'Data Analytics', 'AI & Machine Learning'],
+    status: 'Accredited',
   },
   {
     id: '2',
@@ -16,6 +17,7 @@ export const mockInstitutes: Institute[] = [
     country: 'United Kingdom',
     description: 'Premier business school offering MBA and finance programs.',
     courses: ['MBA', 'Finance', 'International Business'],
+    status: 'Accredited',
   },
   {
     id: '3',
@@ -24,6 +26,7 @@ export const mockInstitutes: Institute[] = [
     country: 'United Kingdom',
     description: 'Renowned for its vibrant arts and humanities programs.',
     courses: ['Fine Arts', 'History of Art', 'Modern Languages'],
+    status: 'Accredited',
   },
   {
     id: '4',
@@ -32,6 +35,7 @@ export const mockInstitutes: Institute[] = [
     country: 'Germany',
     description: 'A top-ranked institute for mechanical and electrical engineering.',
     courses: ['Mechanical Engineering', 'Electrical Engineering', 'Robotics'],
+    status: 'Accredited',
   },
 ];
 
@@ -73,4 +77,35 @@ export const mockEvents: Event[] = [
     imageUrl: 'https://placehold.co/600x400.png',
     description: 'A virtual workshop for institutes preparing for the new 2025 UKCAS accreditation standards.',
   },
+];
+
+export const mockCertificates: Certificate[] = [
+    { 
+        id: 'UKCAS-12345678', 
+        studentName: 'Alice Johnson', 
+        courseName: 'Data Analytics', 
+        issueDate: '2024-07-21', 
+        instituteId: '1' 
+    },
+    { 
+        id: 'UKCAS-87654321', 
+        studentName: 'Bob Williams', 
+        courseName: 'MBA', 
+        issueDate: '2024-06-15', 
+        instituteId: '2' 
+    },
+    { 
+        id: 'UKCAS-11223344', 
+        studentName: 'Charlie Brown', 
+        courseName: 'Fine Arts', 
+        issueDate: '2024-05-30', 
+        instituteId: '3' 
+    },
+    { 
+        id: 'UKCAS-99887766', 
+        studentName: 'Diana Prince', 
+        courseName: 'Mechanical Engineering', 
+        issueDate: '2024-08-01', 
+        instituteId: '4' 
+    }
 ];
