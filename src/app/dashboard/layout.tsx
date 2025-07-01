@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { SidebarProvider, Sidebar, SidebarHeader, SidebarContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarFooter } from "@/components/ui/sidebar";
+import { SidebarProvider, Sidebar, SidebarHeader, SidebarContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarFooter, SidebarTrigger } from "@/components/ui/sidebar";
 import { Bell, HardDrive, HelpCircle, LifeBuoy, Settings, Users, GraduationCap } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -54,7 +54,10 @@ export default function InstituteLayout({ children }: { children: ReactNode }) {
           </SidebarFooter>
         </Sidebar>
         <div className="flex-1">
-          <header className="sticky top-0 z-10 flex h-16 items-center justify-end border-b bg-background px-6">
+          <header className="sticky top-0 z-10 flex h-16 items-center justify-between border-b bg-background px-6">
+             <div>
+                <SidebarTrigger className="md:hidden" />
+             </div>
              <div className="flex items-center gap-4">
                 <Button variant="ghost" size="icon">
                     <Bell className="h-5 w-5"/>

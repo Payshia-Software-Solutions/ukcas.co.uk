@@ -2,13 +2,12 @@ import type { Metadata } from 'next';
 import { Suspense } from 'react';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
-import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
 import { I18nProvider } from '@/context/i18n-provider';
 import CountrySelectorModal from '@/components/CountrySelectorModal';
 import { ThemeProvider } from '@/components/layout/theme-provider';
 import TopProgressBar from '@/components/layout/TopProgressBar';
 import Preloader from '@/components/layout/Preloader';
+import AppShell from '@/components/layout/AppShell';
 
 export const metadata: Metadata = {
   title: 'UKCAS Accreditation Platform',
@@ -44,9 +43,7 @@ export default function RootLayout({
             </Suspense>
             <div className="flex flex-col flex-1">
               <CountrySelectorModal />
-              <Header />
-              <main className="flex-grow">{children}</main>
-              <Footer />
+              <AppShell>{children}</AppShell>
               <Toaster />
             </div>
           </I18nProvider>
