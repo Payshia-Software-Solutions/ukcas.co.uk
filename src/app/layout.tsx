@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import Header from '@/components/layout/Header';
@@ -38,7 +39,9 @@ export default function RootLayout({
         >
           <I18nProvider>
             <Preloader />
-            <TopProgressBar />
+            <Suspense fallback={null}>
+              <TopProgressBar />
+            </Suspense>
             <div className="flex flex-col flex-1">
               <CountrySelectorModal />
               <Header />
