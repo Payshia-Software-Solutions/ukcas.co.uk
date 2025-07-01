@@ -6,6 +6,7 @@ import Footer from '@/components/layout/Footer';
 import { I18nProvider } from '@/context/i18n-provider';
 import CountrySelectorModal from '@/components/CountrySelectorModal';
 import { ThemeProvider } from '@/components/layout/theme-provider';
+import Preloader from '@/components/layout/Preloader';
 
 export const metadata: Metadata = {
   title: 'UKCAS Accreditation Platform',
@@ -28,6 +29,7 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased min-h-screen flex flex-col">
+        <Preloader />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -35,11 +37,13 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <I18nProvider>
-            <CountrySelectorModal />
-            <Header />
-            <main className="flex-grow">{children}</main>
-            <Footer />
-            <Toaster />
+            <div id="main-content" className="flex flex-col flex-1">
+              <CountrySelectorModal />
+              <Header />
+              <main className="flex-grow">{children}</main>
+              <Footer />
+              <Toaster />
+            </div>
           </I18nProvider>
         </ThemeProvider>
       </body>
