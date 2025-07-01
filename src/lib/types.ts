@@ -6,6 +6,7 @@ export interface Institute {
   description: string;
   courses: string[];
   status: 'Accredited' | 'Pending Review' | 'Denied';
+  balance: number;
 }
 
 export interface BlogPost {
@@ -23,7 +24,7 @@ export interface Event {
   title: string;
   date: string;
   location: string;
-  imageUrl: string;
+  imageUrl:string;
   description: string;
 }
 
@@ -33,4 +34,5 @@ export interface Certificate {
   courseName: string;
   issueDate: string;
   instituteId: string;
+  status: 'Approved' | 'Pending' | 'Denied';
 }

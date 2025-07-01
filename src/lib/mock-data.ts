@@ -9,6 +9,7 @@ export const mockInstitutes: Institute[] = [
     description: 'A leading institution in technology and engineering education.',
     courses: ['Computer Science', 'Data Analytics', 'AI & Machine Learning'],
     status: 'Accredited',
+    balance: 150,
   },
   {
     id: '2',
@@ -18,6 +19,7 @@ export const mockInstitutes: Institute[] = [
     description: 'Premier business school offering MBA and finance programs.',
     courses: ['MBA', 'Finance', 'International Business'],
     status: 'Accredited',
+    balance: 250,
   },
   {
     id: '3',
@@ -27,6 +29,7 @@ export const mockInstitutes: Institute[] = [
     description: 'Renowned for its vibrant arts and humanities programs.',
     courses: ['Fine Arts', 'History of Art', 'Modern Languages'],
     status: 'Accredited',
+    balance: 85,
   },
   {
     id: '4',
@@ -36,6 +39,7 @@ export const mockInstitutes: Institute[] = [
     description: 'A top-ranked institute for mechanical and electrical engineering.',
     courses: ['Mechanical Engineering', 'Electrical Engineering', 'Robotics'],
     status: 'Accredited',
+    balance: 5,
   },
 ];
 
@@ -85,27 +89,47 @@ export const mockCertificates: Certificate[] = [
         studentName: 'Alice Johnson', 
         courseName: 'Data Analytics', 
         issueDate: '2024-07-21', 
-        instituteId: '1' 
+        instituteId: '1',
+        status: 'Approved'
     },
     { 
         id: 'UKCAS-87654321', 
         studentName: 'Bob Williams', 
         courseName: 'MBA', 
         issueDate: '2024-06-15', 
-        instituteId: '2' 
+        instituteId: '2',
+        status: 'Approved'
     },
     { 
         id: 'UKCAS-11223344', 
         studentName: 'Charlie Brown', 
         courseName: 'Fine Arts', 
         issueDate: '2024-05-30', 
-        instituteId: '3' 
+        instituteId: '3' ,
+        status: 'Approved'
     },
     { 
         id: 'UKCAS-99887766', 
         studentName: 'Diana Prince', 
         courseName: 'Mechanical Engineering', 
         issueDate: '2024-08-01', 
-        instituteId: '4' 
+        instituteId: '4',
+        status: 'Approved'
+    },
+     { 
+        id: 'UKCAS-23456789', 
+        studentName: 'Eve Adams', 
+        courseName: 'Computer Science', 
+        issueDate: '2024-08-05', 
+        instituteId: '1' ,
+        status: 'Pending'
+    },
+    { 
+        id: 'UKCAS-34567890', 
+        studentName: 'Frank White', 
+        courseName: 'International Business', 
+        issueDate: '2024-08-02', 
+        instituteId: '2',
+        status: 'Pending'
     }
 ];

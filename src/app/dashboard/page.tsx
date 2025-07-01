@@ -1,14 +1,16 @@
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
-import { Users, GraduationCap, DollarSign, Activity } from "lucide-react";
+import { Users, GraduationCap, DollarSign, Wallet } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Badge } from "@/components/ui/badge";
+import { mockCertificates, mockInstitutes } from "@/lib/mock-data";
 
 
 const stats = [
     { title: "Total Students", value: "4,521", icon: <Users className="h-6 w-6 text-muted-foreground" />, description: "Total registered students" },
-    { title: "Certificates Issued", value: "1,234", icon: <GraduationCap className="h-6 w-6 text-muted-foreground" />, description: "Lifetime total" },
-    { title: "Pending Fees", value: "$1,340", icon: <DollarSign className="h-6 w-6 text-muted-foreground" />, description: "From 134 certificates this cycle" },
+    { title: "Certificates Issued", value: "1,234", icon: <GraduationCap className="h-6 w-6 text-muted-foreground" />, description: "Lifetime approved total" },
+    { title: "Account Balance", value: `$${mockInstitutes[0].balance.toFixed(2)}`, icon: <Wallet className="h-6 w-6 text-muted-foreground" />, description: "Available funds for issuance" },
 ]
 
 export default function InstituteDashboardPage() {
@@ -38,7 +40,7 @@ export default function InstituteDashboardPage() {
                  <Card>
                     <CardHeader>
                         <CardTitle>Recently Issued Certificates</CardTitle>
-                        <CardDescription>A list of the last 5 certificates issued.</CardDescription>
+                        <CardDescription>A list of the last 5 certificates issued by your institute.</CardDescription>
                     </CardHeader>
                     <CardContent>
                         <Table>
@@ -47,22 +49,24 @@ export default function InstituteDashboardPage() {
                                     <TableHead>Student Name</TableHead>
                                     <TableHead>Course</TableHead>
                                     <TableHead>Issue Date</TableHead>
+                                    <TableHead>Status</TableHead>
                                     <TableHead>Certificate ID</TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
-                                <TableRow>
-                                    <TableCell>Alice Johnson</TableCell>
-                                    <TableCell>Data Analytics</TableCell>
-                                    <TableCell>2024-07-21</TableCell>
-                                    <TableCell>UKCAS-84629471</TableCell>
-                                </TableRow>
-                                 <TableRow>
-                                    <TableCell>Bob Williams</TableCell>
-                                    <TableCell>Computer Science</TableCell>
-                                    <TableCell>2024-07-20</TableCell>
-                                    <TableCell>UKCAS-37195420</TableCell>
-                                </TableRow>
+                                {mockCertificates.filter(c => c.instituteId === '1').slice(0, 5).map(cert => (
+                                    <TableRow key={cert.id}>
+                                        <TableCell>{cert.studentName}</TableCell>
+                                        <TableCell>{cert.courseName}</TableCell>
+                                        <TableCell>{cert.issueDate}</TableCell>
+                                        <TableCell>
+                                            <Badge variant={cert.status === 'Pending' ? 'secondary' : cert.status === 'Approved' ? 'default' : 'destructive'}>
+                                                {cert.status}
+                                            </Badge>
+                                        </TableCell>
+                                        <TableCell className="font-mono">{cert.id}</TableCell>
+                                    </TableRow>
+                                ))}
                             </TableBody>
                         </Table>
                     </CardContent>

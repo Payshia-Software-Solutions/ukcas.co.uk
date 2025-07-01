@@ -4,7 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { format } from "date-fns";
-import { CalendarIcon } from "lucide-react";
+import { CalendarIcon, Loader2 } from "lucide-react";
+import React from "react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -21,6 +22,9 @@ import { Input } from "@/components/ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
+import { mockInstitutes } from "@/lib/mock-data";
+
+const CERTIFICATE_COST = 10;
 
 const formSchema = z.object({
   studentName: z.string().min(2, { message: "Student name must be at least 2 characters." }),
@@ -32,6 +36,10 @@ const formSchema = z.object({
 
 export default function IssueCertificatePage() {
     const { toast } = useToast();
+    const [isLoading, setIsLoading] = React.useState(false);
+    
+    // In a real app, this would come from a user session or context.
+    const [institute, setInstitute] = React.useState(mockInstitutes.find(i => i.id === '1')); 
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -42,27 +50,56 @@ export default function IssueCertificatePage() {
     });
 
     function onSubmit(values: z.infer<typeof formSchema>) {
-        // In a real application, you would send this data to your backend
-        // to create and store the new certificate.
-        
-        // For this prototype, we'll just show a success message.
-        console.log({
-            ...values,
-            id: `UKCAS-${Math.floor(Math.random() * 90000000) + 10000000}`,
-            instituteId: '1' // Mock institute ID
-        });
-        toast({
-            title: "Certificate Issued!",
-            description: `A new certificate for ${values.studentName} has been successfully created.`,
-        });
-        form.reset();
+        setIsLoading(true);
+
+        // Simulate API call and balance check
+        setTimeout(() => {
+            if (!institute) {
+                toast({
+                    variant: "destructive",
+                    title: "Error",
+                    description: "Could not identify your institution.",
+                });
+                setIsLoading(false);
+                return;
+            }
+
+            if (institute.balance < CERTIFICATE_COST) {
+                toast({
+                    variant: "destructive",
+                    title: "Insufficient Balance",
+                    description: `You need at least $${CERTIFICATE_COST.toFixed(2)} to issue a certificate. Your current balance is $${institute.balance.toFixed(2)}.`,
+                });
+                setIsLoading(false);
+                return;
+            }
+            
+            // Deduct balance and create pending certificate (simulation)
+            const newBalance = institute.balance - CERTIFICATE_COST;
+            setInstitute({...institute, balance: newBalance });
+            
+            console.log("New pending certificate submitted:", {
+                ...values,
+                id: `UKCAS-${Math.floor(Math.random() * 90000000) + 10000000}`,
+                instituteId: institute.id,
+                status: 'Pending',
+            });
+            
+            toast({
+                title: "Certificate Submitted!",
+                description: `The new certificate for ${values.studentName} is pending admin approval. $${CERTIFICATE_COST.toFixed(2)} has been deducted from your balance.`,
+            });
+
+            form.reset();
+            setIsLoading(false);
+        }, 1000);
     }
 
     return (
         <Card>
             <CardHeader>
                 <CardTitle className="text-2xl sm:text-3xl font-bold font-headline">Issue New Certificate</CardTitle>
-                <CardDescription>Fill out the form below to issue a new certificate for a student.</CardDescription>
+                <CardDescription>Fill out the form below. Each certificate costs ${CERTIFICATE_COST.toFixed(2)} to issue, which will be deducted from your balance upon submission.</CardDescription>
             </CardHeader>
             <CardContent>
                 <Form {...form}>
@@ -134,7 +171,10 @@ export default function IssueCertificatePage() {
                                 </FormItem>
                             )}
                         />
-                        <Button type="submit">Issue Certificate</Button>
+                        <Button type="submit" disabled={isLoading}>
+                           {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                           Submit for Approval
+                        </Button>
                     </form>
                 </Form>
             </CardContent>

@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { SidebarProvider, Sidebar, SidebarHeader, SidebarContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarFooter, SidebarTrigger } from "@/components/ui/sidebar";
-import { BadgeCheck, Bell, Building2, Calendar, HardDrive, HelpCircle, LifeBuoy, Newspaper, Settings, UserCircle } from "lucide-react";
+import { BadgeCheck, Bell, Building2, Calendar, HardDrive, LifeBuoy, Newspaper, Settings, UserCircle } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
