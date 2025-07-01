@@ -66,7 +66,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
           </SidebarFooter>
         </Sidebar>
         <div className="flex-1">
-          <header className="sticky top-0 z-10 flex h-16 items-center justify-between border-b bg-background px-6">
+          <header className="sticky top-0 z-10 flex h-16 items-center justify-between border-b bg-background px-4">
              <div>
                 <SidebarTrigger className="md:hidden" />
              </div>
@@ -93,7 +93,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
                 </DropdownMenu>
              </div>
           </header>
-          <main className="p-6">
+          <main className="p-4">
             {children}
           </main>
         </div>
