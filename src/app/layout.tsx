@@ -7,6 +7,7 @@ import { I18nProvider } from '@/context/i18n-provider';
 import CountrySelectorModal from '@/components/CountrySelectorModal';
 import { ThemeProvider } from '@/components/layout/theme-provider';
 import TopProgressBar from '@/components/layout/TopProgressBar';
+import Preloader from '@/components/layout/Preloader';
 
 export const metadata: Metadata = {
   title: 'UKCAS Accreditation Platform',
@@ -36,6 +37,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <I18nProvider>
+            <Preloader />
             <TopProgressBar />
             <div className="flex flex-col flex-1">
               <CountrySelectorModal />
