@@ -140,20 +140,23 @@ export const mockAdminUsers: AdminUser[] = [
         instituteName: 'Code Alpha',
         instituteAddress: 'Colombo',
         registeredDate: '2025-06-06T10:30:00.000Z',
-        email: 'dulajhansana1973@gmail.com'
+        email: 'dulajhansana1973@gmail.com',
+        password: 'password123'
     },
     {
         id: '2',
         instituteName: 'Tech Institute',
         instituteAddress: '123 Main Street, Colombo',
         registeredDate: '2025-06-11T11:30:00.000Z',
-        email: 'admin@example.com'
+        email: 'admin@example.com',
+        password: 'password123'
     },
     {
         id: '3',
         instituteName: 'Global Tech University',
         instituteAddress: 'London, UK',
         registeredDate: '2024-07-20T09:00:00.000Z',
-        email: 'contact@globaltech.edu'
+        email: 'contact@globaltech.edu',
+        password: 'password123'
     }
 ];

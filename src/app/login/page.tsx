@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -9,24 +10,70 @@ import { LogIn } from "lucide-react";
 import Link from "next/link";
 import { useI18n } from "@/context/i18n-provider";
 import LanguageSwitcher from "@/components/layout/LanguageSwitcher";
+import { useToast } from '@/hooks/use-toast';
+import { mockAdminUsers } from '@/lib/mock-data';
 
 export default function LoginPage() {
   const { t } = useI18n();
+  const router = useRouter();
+  const { toast } = useToast();
+
+  const handleLogin = (e: React.FormEvent<HTMLFormElement>, userType: 'Admin' | 'Institute') => {
+    e.preventDefault();
+
+    if (userType === 'Institute') {
+      // For now, institute login just redirects
+      router.push('/dashboard');
+      return;
+    }
+
+    const formData = new FormData(e.currentTarget);
+    const identifier = formData.get('identifier') as string;
+    const password = formData.get('password') as string;
+
+    // Hardcoded admin user
+    if (identifier.toLowerCase() === 'admin' && password === 'admin123') {
+      router.push('/admin');
+      return;
+    }
+
+    // Check mock users by email
+    const user = mockAdminUsers.find(
+      u => u.email.toLowerCase() === identifier.toLowerCase() && u.password === password
+    );
+
+    if (user) {
+      router.push('/admin');
+      return;
+    }
+
+    toast({
+      variant: 'destructive',
+      title: 'Login Failed',
+      description: 'Invalid credentials. Please try again.',
+    });
+  };
 
   const LoginForm = ({ userType }: { userType: 'Admin' | 'Institute' }) => (
-    <form className="space-y-4">
+    <form className="space-y-4" onSubmit={(e) => handleLogin(e, userType)}>
       <div className="space-y-2">
-        <Label htmlFor={`${userType}-email`}>{t('Login.emailLabel')}</Label>
-        <Input id={`${userType}-email`} type="email" placeholder="you@example.com" />
+        <Label htmlFor={`${userType}-identifier`}>
+          {userType === 'Admin' ? 'Username or Email' : t('Login.emailLabel')}
+        </Label>
+        <Input
+          id={`${userType}-identifier`}
+          name="identifier"
+          type={userType === 'Admin' ? 'text' : 'email'}
+          placeholder={userType === 'Admin' ? 'admin' : 'you@example.com'}
+          required
+        />
       </div>
       <div className="space-y-2">
         <Label htmlFor={`${userType}-password`}>{t('Login.passwordLabel')}</Label>
-        <Input id={`${userType}-password`} type="password" />
+        <Input id={`${userType}-password`} name="password" type="password" required />
       </div>
-      <Button type="submit" className="w-full" asChild>
-        <Link href={userType === 'Admin' ? '/admin' : '/dashboard'}>
-          {userType === 'Admin' ? t('Login.loginButtonAdmin') : t('Login.loginButtonInstitute')}
-        </Link>
+      <Button type="submit" className="w-full">
+        {userType === 'Admin' ? t('Login.loginButtonAdmin') : t('Login.loginButtonInstitute')}
       </Button>
     </form>
   );

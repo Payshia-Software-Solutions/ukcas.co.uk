@@ -43,4 +43,5 @@ export interface AdminUser {
   instituteAddress: string;
   registeredDate: string;
   email: string;
+  password?: string;
 }
