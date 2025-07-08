@@ -36,3 +36,11 @@ export interface Certificate {
   instituteId: string;
   status: 'Approved' | 'Pending' | 'Denied';
 }
+
+export interface AdminUser {
+  id: string;
+  instituteName: string;
+  instituteAddress: string;
+  registeredDate: string;
+  email: string;
+}

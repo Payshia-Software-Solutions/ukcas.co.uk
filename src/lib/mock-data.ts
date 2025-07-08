@@ -1,4 +1,4 @@
-import type { Institute, BlogPost, Event, Certificate } from './types';
+import type { Institute, BlogPost, Event, Certificate, AdminUser } from './types';
 
 export const mockInstitutes: Institute[] = [
   {
@@ -131,5 +131,29 @@ export const mockCertificates: Certificate[] = [
         issueDate: '2024-08-02', 
         instituteId: '2',
         status: 'Pending'
+    }
+];
+
+export const mockAdminUsers: AdminUser[] = [
+    {
+        id: '1',
+        instituteName: 'Code Alpha',
+        instituteAddress: 'Colombo',
+        registeredDate: '2025-06-06T10:30:00.000Z',
+        email: 'dulajhansana1973@gmail.com'
+    },
+    {
+        id: '2',
+        instituteName: 'Tech Institute',
+        instituteAddress: '123 Main Street, Colombo',
+        registeredDate: '2025-06-11T11:30:00.000Z',
+        email: 'admin@example.com'
+    },
+    {
+        id: '3',
+        instituteName: 'Global Tech University',
+        instituteAddress: 'London, UK',
+        registeredDate: '2024-07-20T09:00:00.000Z',
+        email: 'contact@globaltech.edu'
     }
 ];

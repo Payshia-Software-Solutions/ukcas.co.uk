@@ -46,6 +46,12 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
                   Events
                 </SidebarMenuButton>
               </SidebarMenuItem>
+               <SidebarMenuItem>
+                <SidebarMenuButton href="/admin/users">
+                  <UserCircle />
+                  User Maintenance
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarContent>
           <SidebarFooter>
