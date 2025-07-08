@@ -111,7 +111,8 @@ export default function UserMaintenancePage() {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {filteredUsers.map((user) => (
+                            {filteredUsers.length > 0 ? (
+                                filteredUsers.map((user) => (
                                 <TableRow key={user.id}>
                                     <TableCell className="font-medium">{user.instituteName}</TableCell>
                                     <TableCell>{user.instituteAddress}</TableCell>
@@ -142,7 +143,26 @@ export default function UserMaintenancePage() {
                                         </DropdownMenu>
                                     </TableCell>
                                 </TableRow>
-                            ))}
+                                ))
+                            ) : (
+                                <TableRow>
+                                    <TableCell colSpan={5} className="h-48 text-center">
+                                        <div className="flex flex-col items-center justify-center gap-4">
+                                            <p className="text-muted-foreground">
+                                                {searchTerm ? `No users found for "${searchTerm}".` : "No users have been created yet."}
+                                            </p>
+                                             {!searchTerm && (
+                                                <Button asChild size="sm">
+                                                    <Link href="/admin/users/new">
+                                                        <UserPlus className="mr-2 h-4 w-4" />
+                                                        Add New User
+                                                    </Link>
+                                                </Button>
+                                            )}
+                                        </div>
+                                    </TableCell>
+                                </TableRow>
+                            )}
                         </TableBody>
                     </Table>
                 </CardContent>
