@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 export default function InstituteLayout({ children }: { children: ReactNode }) {
   return (
     <SidebarProvider>
-      <div className="flex min-h-screen bg-secondary/30">
+      <div className="flex h-screen bg-secondary/30">
         <Sidebar className="border-r">
           <SidebarHeader>
             <Logo />
@@ -53,8 +53,8 @@ export default function InstituteLayout({ children }: { children: ReactNode }) {
               </SidebarMenu>
           </SidebarFooter>
         </Sidebar>
-        <div className="flex-1">
-          <header className="sticky top-0 z-10 flex h-16 items-center justify-between border-b bg-background px-4">
+        <div className="flex flex-1 flex-col overflow-hidden">
+          <header className="flex h-16 shrink-0 items-center justify-between border-b bg-background px-6">
              <div>
                 <SidebarTrigger className="md:hidden" />
              </div>
@@ -79,7 +79,7 @@ export default function InstituteLayout({ children }: { children: ReactNode }) {
                 </DropdownMenu>
              </div>
           </header>
-          <main className="p-4">
+          <main className="flex-1 overflow-y-auto p-6">
             {children}
           </main>
         </div>
