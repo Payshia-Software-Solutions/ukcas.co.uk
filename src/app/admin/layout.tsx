@@ -71,12 +71,8 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
               </SidebarMenu>
           </SidebarFooter>
         </Sidebar>
-        <div className="flex flex-1 flex-col overflow-hidden">
-          <header className="flex h-16 shrink-0 items-center justify-between border-b bg-background px-6">
-             <div>
-                <SidebarTrigger className="md:hidden" />
-             </div>
-             <div className="flex items-center gap-4">
+        <div className="relative flex-1">
+            <div className="fixed top-4 right-6 z-10 flex items-center gap-4">
                 <Button variant="ghost" size="icon">
                     <Bell className="h-5 w-5"/>
                     <span className="sr-only">Notifications</span>
@@ -97,11 +93,11 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
                     <DropdownMenuItem>Logout</DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
-             </div>
-          </header>
-          <main className="flex-1 overflow-y-auto p-6">
-            {children}
-          </main>
+            </div>
+            <SidebarTrigger className="fixed top-5 left-6 z-10 md:hidden" />
+            <main className="h-full overflow-y-auto">
+              {children}
+            </main>
         </div>
       </div>
     </SidebarProvider>
