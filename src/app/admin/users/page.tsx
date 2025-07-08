@@ -5,10 +5,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { UserCircle, UserPlus, ArrowLeft } from "lucide-react";
+import { UserCircle, UserPlus, ArrowLeft, MoreHorizontal } from "lucide-react";
 import Link from 'next/link';
 import { mockAdminUsers } from '@/lib/mock-data';
 import type { AdminUser } from '@/lib/types';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 
 export default function UserMaintenancePage() {
     const [currentDate, setCurrentDate] = useState('');
@@ -80,6 +81,7 @@ export default function UserMaintenancePage() {
                                 <TableHead>Institute Address</TableHead>
                                 <TableHead>Registered Date</TableHead>
                                 <TableHead>Email</TableHead>
+                                <TableHead className="text-right">Actions</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
@@ -89,6 +91,20 @@ export default function UserMaintenancePage() {
                                     <TableCell>{user.instituteAddress}</TableCell>
                                     <TableCell>{new Date(user.registeredDate).toISOString()}</TableCell>
                                     <TableCell>{user.email}</TableCell>
+                                    <TableCell className="text-right">
+                                        <DropdownMenu>
+                                            <DropdownMenuTrigger asChild>
+                                                <Button variant="ghost" className="h-8 w-8 p-0">
+                                                    <span className="sr-only">Open menu</span>
+                                                    <MoreHorizontal className="h-4 w-4" />
+                                                </Button>
+                                            </DropdownMenuTrigger>
+                                            <DropdownMenuContent align="end">
+                                                <DropdownMenuItem>Edit</DropdownMenuItem>
+                                                <DropdownMenuItem className="text-red-500">Delete</DropdownMenuItem>
+                                            </DropdownMenuContent>
+                                        </DropdownMenu>
+                                    </TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>
