@@ -572,14 +572,12 @@ const SidebarMenuButton = React.forwardRef<
 
     if (href && !asChild) {
       button = (
-        <Link href={href} legacyBehavior passHref>
-          <a {...allProps} ref={ref as React.Ref<HTMLAnchorElement>} />
-        </Link>
+        <Link href={href} {...allProps} ref={ref as React.Ref<HTMLAnchorElement>} />
       )
     } else {
       // The ref type is tricky; it can be a button or whatever `asChild` is.
       // We cast it to `any` to avoid TypeScript complexity.
-      button = <Comp {...allProps} ref={ref as any} />
+      button = <Comp {...allProps} {...(href && { href })} ref={ref as any} />
     }
 
     if (!tooltip) {
