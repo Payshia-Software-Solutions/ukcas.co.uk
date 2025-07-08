@@ -1,18 +1,19 @@
 import type { ReactNode } from "react";
-import { SidebarProvider, Sidebar, SidebarHeader, SidebarContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarFooter, SidebarTrigger } from "@/components/ui/sidebar";
-import { Bell, HardDrive, HelpCircle, LifeBuoy, Settings, Users, GraduationCap } from "lucide-react";
-import { Logo } from "@/components/Logo";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { SidebarProvider, Sidebar, SidebarHeader, SidebarContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarFooter } from "@/components/ui/sidebar";
+import { HardDrive, HelpCircle, LogOut, Settings, Users, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import DashboardHeader from "@/components/layout/DashboardHeader";
 
 export default function InstituteLayout({ children }: { children: ReactNode }) {
   return (
     <SidebarProvider>
-      <div className="flex h-screen bg-secondary/30">
-        <Sidebar className="border-r">
+      <div className="flex min-h-screen w-full">
+        <Sidebar className="border-r bg-sidebar text-sidebar-foreground">
           <SidebarHeader>
-            <Logo />
+            <Link href="/dashboard">
+              <span className="text-xl font-bold text-sidebar-foreground px-2">Institute Portal</span>
+            </Link>
           </SidebarHeader>
           <SidebarContent>
             <SidebarMenu>
@@ -39,45 +40,25 @@ export default function InstituteLayout({ children }: { children: ReactNode }) {
           <SidebarFooter>
              <SidebarMenu>
                 <SidebarMenuItem>
-                  <SidebarMenuButton href="#">
+                  <Button variant="ghost" className="w-full justify-start text-sidebar-foreground/80 hover:text-sidebar-foreground hover:bg-sidebar-accent">
                     <Settings />
                     Profile & Settings
-                  </SidebarMenuButton>
+                  </Button>
                 </SidebarMenuItem>
-                <SidebarMenuItem>
-                  <SidebarMenuButton href="#">
-                    <LifeBuoy />
-                    Support
-                  </SidebarMenuButton>
+                 <SidebarMenuItem>
+                  <Button variant="ghost" className="w-full justify-start text-red-400 hover:text-red-400 hover:bg-red-500/10">
+                    <LogOut />
+                    Logout
+                  </Button>
                 </SidebarMenuItem>
               </SidebarMenu>
           </SidebarFooter>
         </Sidebar>
-        <div className="relative flex-1">
-            <div className="fixed top-4 right-6 z-10 flex items-center gap-4">
-                <Button variant="ghost" size="icon">
-                    <Bell className="h-5 w-5"/>
-                    <span className="sr-only">Notifications</span>
-                </Button>
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Avatar className="h-9 w-9 cursor-pointer">
-                      <AvatarImage src="https://placehold.co/100x100.png" alt="Institute Logo" />
-                      <AvatarFallback>GT</AvatarFallback>
-                    </Avatar>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                    <DropdownMenuLabel>Global Tech University</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem>Profile</DropdownMenuItem>
-                    <DropdownMenuItem>Logout</DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-            </div>
-             <SidebarTrigger className="fixed top-5 left-6 z-10 md:hidden" />
-            <main className="h-full overflow-y-auto">
-              {children}
-            </main>
+        <div className="flex flex-1 flex-col">
+          <DashboardHeader />
+          <main className="flex-1 p-6 space-y-6">
+            {children}
+          </main>
         </div>
       </div>
     </SidebarProvider>

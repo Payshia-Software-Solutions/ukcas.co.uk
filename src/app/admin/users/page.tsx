@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -47,32 +47,30 @@ export default function UserMaintenancePage() {
     };
 
     return (
-        <div className="space-y-6">
-            <Card>
-                <CardHeader>
-                    <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-                        <div>
-                            <CardTitle>User Maintenance</CardTitle>
-                            <CardDescription>Create, edit, and manage institute user accounts.</CardDescription>
-                        </div>
-                        <div className="flex w-full sm:w-auto sm:justify-end items-center gap-2">
-                             <div className="relative w-full sm:w-64">
-                                <Input
-                                    placeholder="Search users..."
-                                    value={searchTerm}
-                                    onChange={(e) => setSearchTerm(e.target.value)}
-                                />
-                            </div>
-                            <Button asChild>
-                               <Link href="/admin/users/new">
-                                   <UserPlus className="mr-2 h-4 w-4" />
-                                   Add New User
-                               </Link>
-                            </Button>
-                        </div>
+        <>
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div>
+                    <h1 className="text-2xl font-bold">User Maintenance</h1>
+                    <p className="text-muted-foreground">Create, edit, and manage institute user accounts.</p>
+                </div>
+                <div className="flex w-full sm:w-auto sm:justify-end items-center gap-2">
+                     <div className="relative w-full sm:w-64">
+                        <Input
+                            placeholder="Search users..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                        />
                     </div>
-                </CardHeader>
-                <CardContent>
+                    <Button asChild>
+                       <Link href="/admin/users/new">
+                           <UserPlus className="mr-2 h-4 w-4" />
+                           Add New User
+                       </Link>
+                    </Button>
+                </div>
+            </div>
+            <Card>
+                <CardContent className="p-0">
                     <Table>
                         <TableHeader>
                             <TableRow>
@@ -160,6 +158,6 @@ export default function UserMaintenancePage() {
                     </AlertDialogFooter>
                 </AlertDialogContent>
             </AlertDialog>
-        </div>
+        </>
     );
 }

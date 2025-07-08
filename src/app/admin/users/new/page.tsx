@@ -6,8 +6,8 @@ import { UserPlus } from "lucide-react";
 
 export default function NewUserPage() {
   return (
-    <div className="flex justify-center">
-        <Card className="w-full max-w-2xl shadow-lg">
+    <div className="max-w-2xl mx-auto">
+        <Card className="shadow-lg">
           <CardHeader className="text-center">
              <div className="mx-auto bg-primary text-primary-foreground w-16 h-16 rounded-full flex items-center justify-center mb-4">
               <UserPlus className="h-8 w-8" />
