@@ -1,20 +1,27 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { UserCircle, UserPlus, ArrowLeft, MoreHorizontal } from "lucide-react";
+import { UserCircle, UserPlus, ArrowLeft, MoreHorizontal, UserCog, Trash2 } from "lucide-react";
 import Link from 'next/link';
 import { mockAdminUsers } from '@/lib/mock-data';
 import type { AdminUser } from '@/lib/types';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
+import { useToast } from '@/hooks/use-toast';
+
 
 export default function UserMaintenancePage() {
+    const router = useRouter();
+    const { toast } = useToast();
     const [currentDate, setCurrentDate] = useState('');
-    const [users] = useState<AdminUser[]>(mockAdminUsers);
+    const [users, setUsers] = useState<AdminUser[]>(mockAdminUsers);
     const [searchTerm, setSearchTerm] = useState('');
+    const [userToDelete, setUserToDelete] = useState<AdminUser | null>(null);
 
     useEffect(() => {
         setCurrentDate(new Date().toLocaleDateString('en-GB', {
@@ -28,6 +35,25 @@ export default function UserMaintenancePage() {
         user.instituteName.toLowerCase().includes(searchTerm.toLowerCase()) ||
         user.email.toLowerCase().includes(searchTerm.toLowerCase())
     );
+
+    const handleDeleteClick = (user: AdminUser) => {
+        setUserToDelete(user);
+    };
+
+    const handleDeleteConfirm = () => {
+        if (userToDelete) {
+            setUsers(users.filter(user => user.id !== userToDelete.id));
+            toast({
+                title: "User Deleted",
+                description: `The user for ${userToDelete.instituteName} has been successfully deleted.`,
+            });
+            setUserToDelete(null);
+        }
+    };
+
+    const handleEditClick = (userId: string) => {
+        router.push(`/admin/users/edit/${userId}`);
+    };
 
     return (
         <div className="space-y-6">
@@ -89,7 +115,7 @@ export default function UserMaintenancePage() {
                                 <TableRow key={user.id}>
                                     <TableCell className="font-medium">{user.instituteName}</TableCell>
                                     <TableCell>{user.instituteAddress}</TableCell>
-                                    <TableCell>{new Date(user.registeredDate).toISOString()}</TableCell>
+                                    <TableCell>{new Date(user.registeredDate).toLocaleDateString()}</TableCell>
                                     <TableCell>{user.email}</TableCell>
                                     <TableCell className="text-right">
                                         <DropdownMenu>
@@ -100,8 +126,18 @@ export default function UserMaintenancePage() {
                                                 </Button>
                                             </DropdownMenuTrigger>
                                             <DropdownMenuContent align="end">
-                                                <DropdownMenuItem>Edit</DropdownMenuItem>
-                                                <DropdownMenuItem className="text-red-500">Delete</DropdownMenuItem>
+                                                <DropdownMenuItem onClick={() => handleEditClick(user.id)}>
+                                                    <UserCog className="mr-2 h-4 w-4" />
+                                                    <span>Edit</span>
+                                                </DropdownMenuItem>
+                                                <DropdownMenuSeparator />
+                                                <DropdownMenuItem
+                                                    className="text-red-500 focus:text-red-500"
+                                                    onClick={() => handleDeleteClick(user)}
+                                                >
+                                                    <Trash2 className="mr-2 h-4 w-4" />
+                                                    <span>Delete</span>
+                                                </DropdownMenuItem>
                                             </DropdownMenuContent>
                                         </DropdownMenu>
                                     </TableCell>
@@ -111,6 +147,26 @@ export default function UserMaintenancePage() {
                     </Table>
                 </CardContent>
             </Card>
+
+            <AlertDialog open={!!userToDelete} onOpenChange={() => setUserToDelete(null)}>
+                <AlertDialogContent>
+                    <AlertDialogHeader>
+                        <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                        <AlertDialogDescription>
+                            This action cannot be undone. This will permanently delete the user account for <span className="font-semibold">{userToDelete?.instituteName}</span>.
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                        <AlertDialogCancel onClick={() => setUserToDelete(null)}>Cancel</AlertDialogCancel>
+                        <AlertDialogAction
+                            onClick={handleDeleteConfirm}
+                            className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                        >
+                            Yes, delete user
+                        </AlertDialogAction>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog>
         </div>
     );
 }
