@@ -1,12 +1,12 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { UserCircle, UserPlus, ArrowLeft, MoreHorizontal, UserCog, Trash2 } from "lucide-react";
+import { UserPlus, MoreHorizontal, UserCog, Trash2 } from "lucide-react";
 import Link from 'next/link';
 import { mockAdminUsers } from '@/lib/mock-data';
 import type { AdminUser } from '@/lib/types';
@@ -18,18 +18,9 @@ import { useToast } from '@/hooks/use-toast';
 export default function UserMaintenancePage() {
     const router = useRouter();
     const { toast } = useToast();
-    const [currentDate, setCurrentDate] = useState('');
     const [users, setUsers] = useState<AdminUser[]>(mockAdminUsers);
     const [searchTerm, setSearchTerm] = useState('');
     const [userToDelete, setUserToDelete] = useState<AdminUser | null>(null);
-
-    useEffect(() => {
-        setCurrentDate(new Date().toLocaleDateString('en-GB', {
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric'
-        }));
-    }, []);
 
     const filteredUsers = users.filter(user =>
         user.instituteName.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -57,45 +48,24 @@ export default function UserMaintenancePage() {
 
     return (
         <div className="space-y-6">
-            <Card className="shadow-none border-none bg-transparent">
-                 <CardHeader className="flex flex-row items-center justify-between p-0">
-                    <div>
-                        <CardTitle className="text-2xl font-bold">Good Morning !</CardTitle>
-                        <p className="text-muted-foreground">{currentDate}</p>
-                    </div>
-                    <div className="p-2 bg-card rounded-full border">
-                        <UserCircle className="h-6 w-6" />
-                    </div>
-                 </CardHeader>
-            </Card>
-
-            <Link href="/admin" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
-                <ArrowLeft className="h-4 w-4" />
-                User Dashboard
-            </Link>
-
-            <Card>
-                <CardHeader className="flex flex-row items-center justify-between">
-                    <CardTitle>User Dashboard</CardTitle>
-                    <Button asChild>
-                       <Link href="/admin/users/new">
-                           <UserPlus className="mr-2 h-4 w-4" />
-                           Add New User
-                       </Link>
-                    </Button>
-                </CardHeader>
-            </Card>
-
             <Card>
                 <CardHeader>
                     <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-                        <CardTitle>Users</CardTitle>
-                        <div className="relative w-full sm:w-64">
-                             <Input
-                                placeholder="Search users..."
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                             />
+                        <CardTitle>User Maintenance</CardTitle>
+                        <div className="flex w-full sm:w-auto sm:justify-end items-center gap-2">
+                             <div className="relative w-full sm:w-64">
+                                <Input
+                                    placeholder="Search users..."
+                                    value={searchTerm}
+                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                />
+                            </div>
+                            <Button asChild>
+                               <Link href="/admin/users/new">
+                                   <UserPlus className="mr-2 h-4 w-4" />
+                                   Add New User
+                               </Link>
+                            </Button>
                         </div>
                     </div>
                 </CardHeader>
