@@ -15,10 +15,10 @@ export default function AppShell({ children }: { children: ReactNode }) {
   }
 
   return (
-    <>
+    <div className="flex flex-1 flex-col bg-public-bg text-public-foreground">
       <Header />
       <main className="flex-grow">{children}</main>
       <Footer />
-    </>
+    </div>
   );
 }

@@ -4,25 +4,30 @@
 
 @layer base {
   :root {
-    --background: 356 100% 98%;      /* FDEBEC */
-    --foreground: 354 49% 22%;      /* Dark shade of 7C2B33 */
-    --card: 0 0% 100%;               /* FFFFFF */
+    --background: 356 100% 98%;      /* Light mode background */
+    --foreground: 354 49% 22%;
+    --card: 0 0% 100%;
     --card-foreground: 354 49% 22%;
     --popover: 0 0% 100%;
     --popover-foreground: 354 49% 22%;
-    --primary: 354 49% 32%;          /* 7C2B33 */
-    --primary-foreground: 356 33% 90%; /* E7C7C9 */
-    --secondary: 356 33% 90%;          /* E7C7C9 */
+    --primary: 354 49% 32%;
+    --primary-foreground: 356 33% 90%;
+    --secondary: 356 33% 90%;
     --secondary-foreground: 354 49% 32%;
     --muted: 356 33% 90%;
-    --muted-foreground: 353 29% 51%; /* Derived from C58C94 */
-    --accent: 355 25% 75%;           /* C29599 */
+    --muted-foreground: 353 29% 51%;
+    --accent: 355 25% 75%;
     --accent-foreground: 354 49% 32%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
-    --border: 356 33% 85%;           /* Slightly darker E7C7C9 */
+    --border: 356 33% 85%;
     --input: 356 33% 85%;
     --ring: 354 49% 32%;
+
+    /* Public site variables default to standard theme in light mode */
+    --public-bg: var(--background);
+    --public-card: var(--card);
+    --public-foreground: var(--foreground);
 
     --sidebar-background: 353 39% 26%; /* Dark maroon-grey */
     --sidebar-foreground: 356 33% 90%;
@@ -33,25 +38,33 @@
   }
  
   .dark {
-    --background: 240 10% 3.9%;
+    /* Admin/Dashboard dark theme (light content area) */
+    --background: 240 5% 14%; /* Light gray */
     --foreground: 0 0% 98%;
-    --card: 240 5% 12%;
+    --card: 240 6% 10%; /* Darker card for admin */
     --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
+    --popover: 240 5.9% 10%;
     --popover-foreground: 0 0% 98%;
     --primary: 354 49% 32%;
     --primary-foreground: 356 33% 90%;
-    --secondary: 240 4% 20%;
+    --secondary: 240 3.7% 15.9%;
     --secondary-foreground: 0 0% 98%;
-    --muted: 240 4% 20%;
-    --muted-foreground: 240 5% 65%;
-    --accent: 240 4% 20%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 240 4% 18%;
-    --input: 240 4% 18%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
     --ring: 354 49% 32%;
+    
+    /* Public site dark theme variables */
+    --public-bg: 222.2 84% 4.9%; /* Very dark blue */
+    --public-card: 222.2 84% 4.9%;
+    --public-foreground: 210 40% 98%;
+
+    /* Sidebar dark theme */
     --sidebar-background: 240 6% 10%;
     --sidebar-foreground: 0 0% 98%;
     --sidebar-accent: 354 49% 32%;
