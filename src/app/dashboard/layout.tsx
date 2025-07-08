@@ -46,10 +46,12 @@ export default function InstituteLayout({ children }: { children: ReactNode }) {
                   </Button>
                 </SidebarMenuItem>
                  <SidebarMenuItem>
-                  <Button variant="ghost" className="w-full justify-start text-red-400 hover:text-red-400 hover:bg-red-500/10">
-                    <LogOut />
-                    Logout
-                  </Button>
+                    <Button asChild variant="ghost" className="w-full justify-start text-red-400 hover:text-red-400 hover:bg-red-500/10">
+                      <Link href="/login">
+                        <LogOut />
+                        Logout
+                      </Link>
+                    </Button>
                 </SidebarMenuItem>
               </SidebarMenu>
           </SidebarFooter>
