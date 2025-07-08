@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -51,7 +51,10 @@ export default function UserMaintenancePage() {
             <Card>
                 <CardHeader>
                     <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-                        <CardTitle>User Maintenance</CardTitle>
+                        <div>
+                            <CardTitle>User Maintenance</CardTitle>
+                            <CardDescription>Create, edit, and manage institute user accounts.</CardDescription>
+                        </div>
                         <div className="flex w-full sm:w-auto sm:justify-end items-center gap-2">
                              <div className="relative w-full sm:w-64">
                                 <Input

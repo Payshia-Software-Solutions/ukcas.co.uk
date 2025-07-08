@@ -50,69 +50,63 @@ export default function AdminCertificatesPage() {
     };
 
     return (
-        <div>
-            <div className="flex flex-col items-start gap-4 mb-6 sm:flex-row sm:items-center sm:justify-between">
-                <h1 className="text-2xl sm:text-3xl font-bold font-headline">Manage Certificates</h1>
-            </div>
-            
-            <Card>
-                <CardHeader>
-                    <CardTitle>Certificate Issuance Requests</CardTitle>
-                    <CardDescription>Review, approve, or deny pending certificate requests from institutes.</CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <Table>
-                        <TableHeader>
-                            <TableRow>
-                                <TableHead>Student</TableHead>
-                                <TableHead>Institute</TableHead>
-                                <TableHead>Course</TableHead>
-                                <TableHead>Status</TableHead>
-                                <TableHead className="text-right">Actions</TableHead>
+        <Card>
+            <CardHeader>
+                <CardTitle>Certificate Issuance Requests</CardTitle>
+                <CardDescription>Review, approve, or deny pending certificate requests from institutes.</CardDescription>
+            </CardHeader>
+            <CardContent>
+                <Table>
+                    <TableHeader>
+                        <TableRow>
+                            <TableHead>Student</TableHead>
+                            <TableHead>Institute</TableHead>
+                            <TableHead>Course</TableHead>
+                            <TableHead>Status</TableHead>
+                            <TableHead className="text-right">Actions</TableHead>
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                        {certificates.map((cert) => (
+                            <TableRow key={cert.id}>
+                                <TableCell className="font-medium">{cert.studentName}</TableCell>
+                                <TableCell>{getInstituteName(cert.instituteId)}</TableCell>
+                                <TableCell>{cert.courseName}</TableCell>
+                                <TableCell>
+                                    <Badge variant={cert.status === 'Pending' ? 'secondary' : cert.status === 'Approved' ? 'default' : 'destructive'}>
+                                        {cert.status}
+                                    </Badge>
+                                </TableCell>
+                                <TableCell className="text-right">
+                                    {cert.status === 'Pending' && (
+                                        <div className="space-x-2">
+                                            <Button 
+                                                variant="ghost" 
+                                                size="sm" 
+                                                className="text-green-600 hover:text-green-700"
+                                                onClick={() => handleApproval(cert.id, 'Approved')}
+                                            >
+                                                Approve
+                                            </Button>
+                                            <Button 
+                                                variant="ghost" 
+                                                size="sm" 
+                                                className="text-red-600 hover:text-red-700"
+                                                onClick={() => handleApproval(cert.id, 'Denied')}
+                                            >
+                                                Deny
+                                            </Button>
+                                        </div>
+                                    )}
+                                    {cert.status !== 'Pending' && (
+                                            <span className="text-xs text-muted-foreground">No actions</span>
+                                    )}
+                                </TableCell>
                             </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            {certificates.map((cert) => (
-                                <TableRow key={cert.id}>
-                                    <TableCell className="font-medium">{cert.studentName}</TableCell>
-                                    <TableCell>{getInstituteName(cert.instituteId)}</TableCell>
-                                    <TableCell>{cert.courseName}</TableCell>
-                                    <TableCell>
-                                        <Badge variant={cert.status === 'Pending' ? 'secondary' : cert.status === 'Approved' ? 'default' : 'destructive'}>
-                                            {cert.status}
-                                        </Badge>
-                                    </TableCell>
-                                    <TableCell className="text-right">
-                                        {cert.status === 'Pending' && (
-                                            <div className="space-x-2">
-                                                <Button 
-                                                    variant="ghost" 
-                                                    size="sm" 
-                                                    className="text-green-600 hover:text-green-700"
-                                                    onClick={() => handleApproval(cert.id, 'Approved')}
-                                                >
-                                                    Approve
-                                                </Button>
-                                                <Button 
-                                                    variant="ghost" 
-                                                    size="sm" 
-                                                    className="text-red-600 hover:text-red-700"
-                                                    onClick={() => handleApproval(cert.id, 'Denied')}
-                                                >
-                                                    Deny
-                                                </Button>
-                                            </div>
-                                        )}
-                                        {cert.status !== 'Pending' && (
-                                             <span className="text-xs text-muted-foreground">No actions</span>
-                                        )}
-                                    </TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </CardContent>
-            </Card>
-        </div>
+                        ))}
+                    </TableBody>
+                </Table>
+            </CardContent>
+        </Card>
     )
 }
