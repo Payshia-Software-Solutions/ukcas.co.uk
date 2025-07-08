@@ -4,61 +4,61 @@
 
 @layer base {
   :root {
-    --background: 354 80% 96%;
-    --foreground: 351 40% 33%;
-    --card: 0 0% 100%;
-    --card-foreground: 351 40% 33%;
+    --background: 356 100% 98%;      /* FDEBEC */
+    --foreground: 354 49% 22%;      /* Dark shade of 7C2B33 */
+    --card: 0 0% 100%;               /* FFFFFF */
+    --card-foreground: 354 49% 22%;
     --popover: 0 0% 100%;
-    --popover-foreground: 351 40% 33%;
-    --primary: 354 49% 32%;
-    --primary-foreground: 356 43% 94%;
-    --secondary: 356 43% 94%;
+    --popover-foreground: 354 49% 22%;
+    --primary: 354 49% 32%;          /* 7C2B33 */
+    --primary-foreground: 356 33% 90%; /* E7C7C9 */
+    --secondary: 356 33% 90%;          /* E7C7C9 */
     --secondary-foreground: 354 49% 32%;
-    --muted: 356 43% 94%;
-    --muted-foreground: 352 29% 51%;
-    --accent: 356 41% 84%;
+    --muted: 356 33% 90%;
+    --muted-foreground: 353 29% 51%; /* Derived from C58C94 */
+    --accent: 355 25% 75%;           /* C29599 */
     --accent-foreground: 354 49% 32%;
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 356 41% 84%;
-    --input: 356 41% 84%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 356 33% 85%;           /* Slightly darker E7C7C9 */
+    --input: 356 33% 85%;
     --ring: 354 49% 32%;
 
-    --sidebar-background: 351 40% 33%;
-    --sidebar-foreground: 356 43% 94%;
+    --sidebar-background: 353 39% 26%; /* Dark maroon-grey */
+    --sidebar-foreground: 356 33% 90%;
     --sidebar-accent: 354 49% 32%;
     --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 353 39% 36%;
-    --sidebar-ring: 351 30% 66%;
+    --sidebar-border: 353 39% 30%;
+    --sidebar-ring: 355 25% 75%;
   }
  
   .dark {
-    --background: 351 20% 18%;
-    --foreground: 356 43% 94%;
-    --card: 351 20% 22%;
-    --card-foreground: 356 43% 94%;
-    --popover: 351 20% 18%;
-    --popover-foreground: 356 43% 94%;
-    --primary: 351 30% 66%;
-    --primary-foreground: 354 49% 22%;
-    --secondary: 352 29% 41%;
-    --secondary-foreground: 356 43% 94%;
-    --muted: 352 29% 41%;
-    --muted-foreground: 356 23% 77%;
-    --accent: 352 29% 41%;
-    --accent-foreground: 356 43% 94%;
+    --background: 353 39% 15%;        /* Very dark grey for page background */
+    --foreground: 356 33% 90%;        /* Light text for general use */
+    --card: 353 39% 22%;             /* Lighter dark grey for cards (Header, Admin cards) */
+    --card-foreground: 356 33% 90%;  /* Light text on cards */
+    --popover: 353 39% 26%;
+    --popover-foreground: 356 33% 90%;
+    --primary: 355 25% 75%;           /* Mauve (C29599) for Hero background */
+    --primary-foreground: 354 49% 22%; /* Dark text to be used on primary (mauve) bg */
+    --secondary: 354 49% 32%;          /* Maroon (7C2B33) for secondary buttons */
+    --secondary-foreground: 356 33% 90%; /* Light text on maroon buttons */
+    --muted: 354 49% 32%;
+    --muted-foreground: 353 29% 61%;
+    --accent: 354 49% 42%;
+    --accent-foreground: 356 33% 90%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 352 29% 41%;
-    --input: 352 29% 41%;
-    --ring: 351 30% 66%;
-    
-    --sidebar-background: 351 40% 33%;
-    --sidebar-foreground: 356 43% 94%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 353 39% 32%;
+    --input: 353 39% 32%;
+    --ring: 355 25% 75%;
+
+    --sidebar-background: 353 39% 26%;
+    --sidebar-foreground: 356 33% 90%;
     --sidebar-accent: 354 49% 32%;
     --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 353 39% 36%;
-    --sidebar-ring: 351 30% 66%;
+    --sidebar-border: 353 39% 30%;
+    --sidebar-ring: 355 25% 75%;
   }
 
   /* NProgress styles */
