@@ -2,12 +2,11 @@
 
 import React, { createContext, useState, useContext, ReactNode, useCallback } from 'react';
 import en from '@/messages/en.json';
-import si from '@/messages/si.json';
 import ja from '@/messages/ja.json';
 import ru from '@/messages/ru.json';
 import hi from '@/messages/hi.json';
 
-const messages: Record<string, any> = { en, si, ja, ru, hi };
+const messages: Record<string, any> = { en, ja, ru, hi };
 
 type I18nContextType = {
   locale: string;
