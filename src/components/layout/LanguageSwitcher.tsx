@@ -21,7 +21,6 @@ export default function LanguageSwitcher() {
       </SelectTrigger>
       <SelectContent>
         <SelectItem value="en">English</SelectItem>
-        <SelectItem value="si">සිංහල</SelectItem>
         <SelectItem value="ja">日本語</SelectItem>
         <SelectItem value="ru">Русский</SelectItem>
         <SelectItem value="hi">हिन्दी</SelectItem>
